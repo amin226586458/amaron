@@ -246,6 +246,34 @@ const products = [
 ====================================================
 */
 
+
+/*
+====================================================
+              ترتيب المنتجات عشوائياً
+====================================================
+*/
+
+function shuffleProducts(list){
+
+  const arr = [...list];
+
+  for(let i = arr.length - 1; i > 0; i--){
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+
+  }
+
+  return arr;
+
+}
+
+const displayProducts = [
+  ...shuffleProducts(products.filter(p => p.newProduct)),
+  ...shuffleProducts(products.filter(p => !p.newProduct))
+];
+
 const productsEl =
   document.getElementById("products");
 
@@ -275,6 +303,7 @@ const searchInput =
 
 
 let selectedProduct = null;
+let checkoutFromCart = false;
 
 
 /*
@@ -375,7 +404,7 @@ function productCard(p){
       ${
         p.offer
         ?
-        `<span class="discount">-${d || 99}%</span>`
+        `<span class="discount">-99%</span>`
         :
         ""
       }
@@ -443,7 +472,7 @@ function productCard(p){
 ====================================================
 */
 
-function render(list = products){
+function render(list = displayProducts){
 
   productsEl.innerHTML =
     list.map(productCard).join("");
@@ -460,7 +489,7 @@ function render(list = products){
 function renderOffers(){
 
   const list =
-    products.filter(p => p.offer);
+    shuffleProducts(products.filter(p => p.offer));
 
   offersEl.innerHTML =
     list.map(productCard).join("");
@@ -477,7 +506,7 @@ function renderOffers(){
 function renderBest(){
 
   const list =
-    products.filter(p => p.best);
+    shuffleProducts(products.filter(p => p.best));
 
   bestEl.innerHTML =
     list.map(productCard).join("");
@@ -494,7 +523,7 @@ function renderBest(){
 function renderNew(){
 
   const list =
-    products.filter(p => p.newProduct);
+    shuffleProducts(products.filter(p => p.newProduct));
 
   newEl.innerHTML =
     list.map(productCard).join("");
@@ -509,6 +538,8 @@ function renderNew(){
 */
 
 function openOrder(id){
+
+  checkoutFromCart = false;
 
   selectedProduct =
     products.find(p => p.id === id);
@@ -956,7 +987,7 @@ function searchProducts(){
 
   if(!q){
 
-    render(products);
+    render(displayProducts);
 
     return;
 
@@ -968,7 +999,7 @@ function searchProducts(){
   */
 
   const result =
-    products.filter(product => {
+    displayProducts.filter(product => {
 
       const name =
         normalizeText(
@@ -1096,7 +1127,7 @@ function clearSearch(){
 
   searchInput.value = "";
 
-  render(products);
+  render(displayProducts);
 
   productsEl.scrollIntoView({
     behavior:"smooth",
@@ -1218,166 +1249,190 @@ if(orderForm){
 
     e.preventDefault();
 
-
     const status =
       document.getElementById("status");
-
 
     if(!selectedProduct){
 
       status.className = "error";
-
-      status.textContent =
-        "يرجى اختيار منتج أولاً";
-
+      status.textContent = "يرجى اختيار منتج أولاً";
       return;
 
     }
 
+    let orderItems;
+
+    if(checkoutFromCart){
+
+      orderItems = cart.map(item => {
+
+        const product =
+          products.find(p => p.id === item.id);
+
+        if(!product) return null;
+
+        return {
+          id: product.id,
+          name: product.name,
+          price: Number(product.price),
+          quantity: Math.max(1, Number(item.quantity) || 1),
+          image: product.image
+        };
+
+      }).filter(Boolean);
+
+      if(!orderItems.length){
+
+        status.className = "error";
+        status.textContent = "السلة فارغة";
+        return;
+
+      }
+
+    }else{
+
+      const qty = Math.max(
+        1,
+        Number(document.getElementById("quantity").value) || 1
+      );
+
+      orderItems = [{
+        id: selectedProduct.id,
+        name: selectedProduct.name,
+        price: Number(selectedProduct.price),
+        quantity: qty,
+        image: selectedProduct.image
+      }];
+
+    }
+
+    const total = orderItems.reduce(
+      (sum,item) => sum + item.price * item.quantity,
+      0
+    );
+
+    const totalQuantity = orderItems.reduce(
+      (sum,item) => sum + item.quantity,
+      0
+    );
+
+    /*
+    هذا النص يحتوي على جميع المنتجات،
+    لذلك Order.php سيستقبلها كلها في product.
+    */
+
+    const productText = orderItems
+      .map(item => `${item.name} × ${item.quantity}`)
+      .join("\n");
 
     status.className = "";
-
-    status.textContent =
-      "جارٍ إرسال الطلب...";
-
+    status.textContent = "جارٍ إرسال الطلب...";
 
     const data = {
 
-      product:
-        selectedProduct.name,
+      product: productText,
 
-      price:
-        selectedProduct.price,
+      products: orderItems.map(item => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity
+      })),
 
-      name:
-        document.getElementById(
-          "fullName"
-        ).value,
+      items: orderItems.map(item => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity
+      })),
 
-      phone:
-        document.getElementById(
-          "phone"
-        ).value,
+      price: total,
+      total: total,
 
-      email:
-        document.getElementById(
-          "email"
-        ).value,
-
-      city:
-        document.getElementById(
-          "city"
-        ).value,
-
-      address:
-        document.getElementById(
-          "address"
-        ).value,
-
-      quantity:
-        document.getElementById(
-          "quantity"
-        ).value
+      name: document.getElementById("fullName").value,
+      phone: document.getElementById("phone").value,
+      email: document.getElementById("email").value,
+      city: document.getElementById("city").value,
+      address: document.getElementById("address").value,
+      quantity: totalQuantity
 
     };
 
-
     try{
 
-      const r =
-        await fetch(
-          "/send-order",
-          {
-            method:"POST",
+      const r = await fetch(
+        "/send-order",
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body: JSON.stringify(data)
+        }
+      );
 
-            headers:{
-              "Content-Type":
-                "application/json"
-            },
-
-            body:
-              JSON.stringify(data)
-          }
-        );
-
-
-      const j =
-        await r.json();
-
+      const j = await r.json();
 
       if(!j.success){
 
         throw new Error(
-          j.message ||
-          "تعذر إرسال الطلب"
+          j.message || "تعذر إرسال الطلب"
         );
 
       }
 
-
-      /*
-      تسجيل الطلب محلياً
-      */
-
       orders.push({
 
-        id:
-          Date.now(),
+        id: Date.now(),
 
-        product:
-          selectedProduct.name,
+        product: productText,
 
-        price:
-          selectedProduct.price,
+        products: orderItems,
 
-        quantity:
-          Number(data.quantity),
+        items: orderItems,
 
-        createdAt:
-          Date.now(),
+        price: total,
 
-        status:
-          "pending"
+        total: total,
+
+        quantity: totalQuantity,
+
+        createdAt: Date.now(),
+
+        status: "pending"
 
       });
 
-
       saveOrders();
 
-
-      status.className =
-        "success";
-
+      status.className = "success";
       status.textContent =
         "تم استلام طلبك بنجاح، سنتواصل معك قريباً.";
 
-
       e.target.reset();
 
+      if(checkoutFromCart){
 
-      /*
-      إزالة المنتج من السلة
-      */
+        cart = [];
 
-      cart =
-        cart.filter(
-          item =>
-            item.id !==
-            selectedProduct.id
+      }else{
+
+        cart = cart.filter(
+          item => item.id !== selectedProduct.id
         );
 
+      }
 
       saveCart();
-
       updateCartCount();
+      renderCart();
+
+      checkoutFromCart = false;
 
     }
-
     catch(err){
 
-      status.className =
-        "error";
-
+      status.className = "error";
       status.textContent =
         err.message ||
         "حدث خطأ أثناء إرسال الطلب";
@@ -1388,44 +1443,63 @@ if(orderForm){
 
 }
 
-
-/*
-====================================================
-                الطلب من السلة
-====================================================
-*/
-
 function openCartCheckout(){
 
-  const first =
-    cart[0];
+  if(cart.length === 0){
 
-
-  if(!first){
-
+    showToast("السلة فارغة");
     return;
 
   }
 
+  const detailedCart = cart.map(item => {
+
+    const product =
+      products.find(p => p.id === item.id);
+
+    if(!product) return null;
+
+    return {
+      id: product.id,
+      name: product.name,
+      price: Number(product.price),
+      quantity: Math.max(1, Number(item.quantity) || 1),
+      image: product.image
+    };
+
+  }).filter(Boolean);
+
+  if(!detailedCart.length){
+
+    showToast("السلة فارغة");
+    return;
+
+  }
+
+  checkoutFromCart = true;
 
   selectedProduct =
-    products.find(
-      p => p.id === first.id
-    );
-
+    products.find(p => p.id === detailedCart[0].id);
 
   if(!selectedProduct){
 
+    checkoutFromCart = false;
     return;
 
   }
 
+  const total = detailedCart.reduce(
+    (sum,item) => sum + item.price * item.quantity,
+    0
+  );
 
-  document.getElementById(
-    "productName"
-  ).value =
-    selectedProduct.name;
+  const totalQuantity = detailedCart.reduce(
+    (sum,item) => sum + item.quantity,
+    0
+  );
 
+  document.getElementById("productName").value =
+    "طلب متعدد المنتجات";
 
   selected.innerHTML = `
 
@@ -1434,49 +1508,69 @@ function openCartCheckout(){
       onerror="this.src='images/placeholder.svg'"
     >
 
-    <h3>
-      ${selectedProduct.name}
-    </h3>
+    <h3>طلب متعدد المنتجات</h3>
 
     <div class="price">
-      ${money(selectedProduct.price)}
+      ${money(total)}
     </div>
 
     <p>
-      لديك ${cart.length}
-      منتجات مختلفة في السلة.
+      عدد المنتجات المختلفة:
+      <strong>${detailedCart.length}</strong>
     </p>
+
+    <p>
+      إجمالي الكمية:
+      <strong>${totalQuantity}</strong>
+    </p>
+
+    <div style="
+      margin-top:15px;
+      padding:12px;
+      background:#f5f6f8;
+      border-radius:10px;
+    ">
+
+      ${detailedCart.map(item => `
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          gap:10px;
+          padding:8px 0;
+          border-bottom:1px solid #ddd;
+        ">
+
+          <span>
+            ${item.name} × ${item.quantity}
+          </span>
+
+          <strong>
+            ${money(item.price * item.quantity)}
+          </strong>
+
+        </div>
+
+      `).join("")}
+
+    </div>
 
   `;
 
+  const quantityInput =
+    document.getElementById("quantity");
+
+  if(quantityInput){
+    quantityInput.value = totalQuantity;
+  }
 
   cartPage.classList.add("hidden");
-
   homePage.classList.add("hidden");
-
   orderPage.classList.remove("hidden");
-
-
-  document.getElementById(
-    "quantity"
-  ).value =
-    cart.reduce(
-      (total,item) =>
-        total + item.quantity,
-      0
-    );
-
 
   window.scrollTo(0,0);
 
 }
-
-
-/*
-====================================================
-                    الرسائل
-====================================================
-*/
 
 function showToast(message){
 
@@ -1734,7 +1828,7 @@ function cancelOrder(id){
 ====================================================
 */
 
-render();
+render(displayProducts);
 
 renderOffers();
 
