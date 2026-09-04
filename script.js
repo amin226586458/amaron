@@ -235,8 +235,19 @@ const products = [
     offer:true,
     best:false,
     newProduct:true
-  }
+  },
 
+
+  {
+    id:23,
+    name:"طاقم العناية الاحترافي",
+    price:300,
+    old:600,
+    image:"https://i.postimg.cc/MHtpKVQ9/IMG-8315.jpg",
+    offer:true,
+    best:false,
+    newProduct:true
+  },
 ];
 
 
