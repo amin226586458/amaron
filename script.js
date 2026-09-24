@@ -19,10 +19,10 @@ const products = [
 
   {
     id:2,
-    name:"ساعة ذكية رياضية",
+    name:"محطة شحن لا سلكية",
     price:449,
     old:599,
-    image:"./images/",
+    image:"./images/محطة شحن لا سلكية.PNG",
     offer:false,
     best:false,
     newProduct:false
