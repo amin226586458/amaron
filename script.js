@@ -25,7 +25,7 @@ const products = [
     image:"./images/محطة شحن لا سلكية.PNG",
     offer:false,
     best:false,
-    newProduct:false
+    newProduct:true
   },
 
   {
