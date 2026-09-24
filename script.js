@@ -77,7 +77,7 @@ const products = [
     name:"كمبيوتر محمول",
     price:2899,
     old:3500,
-    image:"./images/Hp Laptop 14-dq0090tg - Intel Pentium Silver N5030 _ 1_1 GHz - Win 10 Home in S mode - UHD Graphics 605 - 4 GB RAM - 128 GB SSD TLC - 14_ 1366 x 768 (hd) - Wi-Fi 5 - jet black.jpg",
+    image:"./images/Microsoft Unveils First 5G Surface Laptop with eSIM.jpg",
     offer:true,
     best:false,
     newProduct:false
