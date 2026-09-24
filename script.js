@@ -8,13 +8,13 @@ const products = [
 
   {
     id:1,
-    name:"سماعات لاسلكية احترافية",
-    price:299,
-    old:399,
-    image:"./images/",
-    offer:false,
+    name:"كابل شحن سريع USB C",
+    price:50,
+    old:80,
+    image:"./images/IMG_8631.PNG",
+    offer:true,
     best:false,
-    newProduct:false
+    newProduct:true
   },
 
   {
