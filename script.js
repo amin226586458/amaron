@@ -11,7 +11,7 @@ const products = [
     name:"سماعات لاسلكية احترافية",
     price:299,
     old:399,
-    image:"https://i.postimg.cc/prMBJqDw/IMG-8280.jpg",
+    image:"./images/",
     offer:false,
     best:false,
     newProduct:false
@@ -22,7 +22,7 @@ const products = [
     name:"ساعة ذكية رياضية",
     price:449,
     old:599,
-    image:"https://i.postimg.cc/kXcyWNB3/IMG-8281.jpg",
+    image:"./images/",
     offer:false,
     best:false,
     newProduct:false
@@ -33,7 +33,7 @@ const products = [
     name:"حقيبة ظهر عصرية",
     price:249,
     old:329,
-    image:"https://i.postimg.cc/ZYPPhPP5/IMG-8282.jpg",
+    image:"./images/",
     offer:false,
     best:false,
     newProduct:false
@@ -44,7 +44,7 @@ const products = [
     name:"كاميرا صغيرة للتصوير",
     price:799,
     old:999,
-    image:"https://i.postimg.cc/7PTHCXtf/IMG-8283.jpg",
+    image:"./images/",
     offer:false,
     best:false,
     newProduct:false
@@ -55,7 +55,7 @@ const products = [
     name:"لوحة مفاتيح لاسلكية",
     price:199,
     old:249,
-    image:"https://i.postimg.cc/nhWB13Zr/IMG-8285.jpg",
+    image:"./images/",
     offer:false,
     best:true,
     newProduct:false
@@ -66,7 +66,7 @@ const products = [
     name:"مصباح LED مكتبي",
     price:129,
     old:179,
-    image:"https://i.postimg.cc/P5dTRHXp/IMG-8286.jpg",
+    image:"./images/",
     offer:true,
     best:true,
     newProduct:false
@@ -85,7 +85,7 @@ const products = [
 
   {
     id:8,
-    name:"جهاز تدليك",
+    name:"./images/",
     price:350,
     old:700,
     image:"https://i.postimg.cc/RFHtFsSp/IMG-8318.jpg",
@@ -99,7 +99,7 @@ const products = [
     name:"Robot tesla",
     price:8000000,
     old:900000,
-    image:"https://i.postimg.cc/VNsrwZML/527DD891-1216-413F-8C36-631C6CCD01E4.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -110,7 +110,7 @@ const products = [
     name:"Moniteurs Gamer 250 hz",
     price:1500,
     old:2000,
-    image:"https://i.postimg.cc/ZRcwRMs6/IMG-8308.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -121,7 +121,7 @@ const products = [
     name:"Iphone 18 pro max",
     price:16000,
     old:20000,
-    image:"https://i.postimg.cc/bYm6f4ts/IMG-8306.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -132,7 +132,7 @@ const products = [
     name:"Rtx 3060",
     price:8000,
     old:10000,
-    image:"https://i.postimg.cc/YSN3nPHD/IMG-8307.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -143,7 +143,7 @@ const products = [
     name:"ساعة كوارتز رجالية فاخرة",
     price:199,
     old:299,
-    image:"https://i.postimg.cc/JzkPfqJN/IMG-8311.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -154,7 +154,7 @@ const products = [
     name:"كميرة صغيرة لتجسس",
     price:299,
     old:399,
-    image:"https://i.postimg.cc/jq3cC947/IMG-8319.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -165,7 +165,7 @@ const products = [
     name:"مزيل الرؤوس السوداء الكهربائي",
     price:190,
     old:299,
-    image:"https://i.postimg.cc/25xFYX5B/IMG-8322.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -176,7 +176,7 @@ const products = [
     name:"مكينة الحلاقة المناطق الحساسة",
     price:99,
     old:298,
-    image:"https://i.postimg.cc/vH6rTmmp/IMG-8320.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -187,7 +187,7 @@ const products = [
     name:"مكينة تشذيب شعر الانف",
     price:199,
     old:299,
-    image:"https://i.postimg.cc/2jgH2ML1/IMG-8317.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -198,7 +198,7 @@ const products = [
     name:"ساعة ذكية مع كميرة",
     price:1600,
     old:2500,
-    image:"https://i.postimg.cc/sXQYWfc9/IMG-8314.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -209,7 +209,7 @@ const products = [
     name:"180 قطعة من لصقات حب الشباب",
     price:199,
     old:299,
-    image:"https://i.postimg.cc/hjfr01Sh/IMG-8321.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -220,7 +220,7 @@ const products = [
     name:"مروحة تبريد الهاتف",
     price:199,
     old:299,
-    image:"https://i.postimg.cc/W1xb32d4/IMG-8324.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -231,7 +231,7 @@ const products = [
     name:"سماعات اذن احترافية oraimo",
     price:500,
     old:600,
-    image:"https://i.postimg.cc/76kBq2D0/IMG-8313.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
@@ -243,7 +243,7 @@ const products = [
     name:"طاقم العناية الاحترافي",
     price:300,
     old:600,
-    image:"https://i.postimg.cc/MHtpKVQ9/IMG-8315.jpg",
+    image:"./images/",
     offer:true,
     best:false,
     newProduct:true
