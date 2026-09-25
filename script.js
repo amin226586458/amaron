@@ -30,10 +30,10 @@ const products = [
 
   {
     id:3,
-    name:"حقيبة ظهر عصرية",
+    name:"شاحن لا سلكي type C",
     price:249,
     old:329,
-    image:"./images/",
+    image:"./images/4.PNG",
     offer:false,
     best:false,
     newProduct:false
