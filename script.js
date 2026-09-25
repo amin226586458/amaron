@@ -84,17 +84,6 @@ const products = [
   },
 
   {
-    id:8,
-    name:"./images/",
-    price:350,
-    old:700,
-    image:"https://i.postimg.cc/RFHtFsSp/IMG-8318.jpg",
-    offer:true,
-    best:false,
-    newProduct:false
-  },
-
-  {
     id:9,
     name:"Robot tesla",
     price:8000000,
