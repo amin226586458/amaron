@@ -220,7 +220,7 @@ const products = [
     name:"مروحة تبريد الهاتف",
     price:199,
     old:299,
-    image:"./images/",
+    image:"./images/تسوق ميمو ومبرد هاتف  TL07 مع مصابيح RGB بمشبك مغناطيسي تبريد ثلج شديد التجميد للألعاب البث المباشر + صوابع بابجي ميمو الاصلية أونلاين في مصر.jpg",
     offer:true,
     best:false,
     newProduct:true
