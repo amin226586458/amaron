@@ -522,14 +522,6 @@ function openOrder(id){
 
         </video>
 
-        <button
-          type="button"
-          class="product-video-sound"
-          onclick="toggleProductVideoSound(this)"
-        >
-          🔇 تشغيل الصوت
-        </button>
-
       </div>
 
     `;
