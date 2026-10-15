@@ -41,7 +41,7 @@ const products = [
 
   {
     id:4,
-    name:"ايفون اكس اس",
+    name:"iphone xs 256 GB",
     price:799,
     old:999,
     image:"./images/14.png",
@@ -83,27 +83,6 @@ const products = [
     newProduct:false
   },
 
-  {
-    id:9,
-    name:"Robot tesla",
-    price:8000000,
-    old:900000,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
-
-  {
-    id:10,
-    name:"Moniteurs Gamer 250 hz",
-    price:1500,
-    old:2000,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
 
   {
     id:11,
@@ -117,85 +96,8 @@ const products = [
   },
 
   {
-    id:12,
-    name:"Rtx 3060",
-    price:8000,
-    old:10000,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
-
-  {
     id:13,
     name:"ساعة كوارتز رجالية فاخرة",
-    price:199,
-    old:299,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
-
-  {
-    id:17,
-    name:"كميرة صغيرة لتجسس",
-    price:299,
-    old:399,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
-
-  {
-    id:14,
-    name:"مزيل الرؤوس السوداء الكهربائي",
-    price:190,
-    old:299,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
-
-  {
-    id:15,
-    name:"مكينة الحلاقة المناطق الحساسة",
-    price:99,
-    old:298,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
-
-  {
-    id:16,
-    name:"مكينة تشذيب شعر الانف",
-    price:199,
-    old:299,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
-
-  {
-    id:19,
-    name:"ساعة ذكية مع كميرة",
-    price:1600,
-    old:2500,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
-
-  {
-    id:20,
-    name:"180 قطعة من لصقات حب الشباب",
     price:199,
     old:299,
     image:"./images/",
@@ -215,28 +117,6 @@ const products = [
     newProduct:true
   },
 
-  {
-    id:22,
-    name:"سماعات اذن احترافية oraimo",
-    price:500,
-    old:600,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
-
-
-  {
-    id:23,
-    name:"طاقم العناية الاحترافي",
-    price:300,
-    old:600,
-    image:"./images/",
-    offer:true,
-    best:false,
-    newProduct:true
-  },
 ];
 
 
