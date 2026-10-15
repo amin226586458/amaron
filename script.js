@@ -41,10 +41,10 @@ const products = [
 
   {
     id:4,
-    name:"كاميرا صغيرة للتصوير",
+    name:"ايفون اكس اس",
     price:799,
     old:999,
-    image:"./images/",
+    image:"./images/14.png",
     offer:false,
     best:false,
     newProduct:false
